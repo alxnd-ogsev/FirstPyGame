@@ -62,6 +62,8 @@ class player(object):
             #pygame.draw.rect(win, (255,0,0), self.hitbox, 2)
 
         def hit(self):
+                self.isJump = False
+                self.jumpCount = 10
                 self.x = 60
                 self.y = 410
                 self.walkCount = 0
@@ -76,7 +78,7 @@ class player(object):
                         for event in pygame.event.get():
                                 if event.type == pygame.QUIT:
                                         i = 101
-                                        pyhame.quit()
+                                        pygame.quit()
                 
 class projectile(object):
     def __init__(self, x, y, radius, color, facing):
@@ -150,7 +152,7 @@ class enemy(object):
 def redrawGameWindow():
     win.blit(bg, (0,0))
     text = font.render('Score: ' + str(score), 1, (0,0,0))
-    win.blit(text, (390, 10))
+    win.blit(text, (370, 10))
     man.draw(win)
     goblin.draw(win)
     for bullet in bullets:
